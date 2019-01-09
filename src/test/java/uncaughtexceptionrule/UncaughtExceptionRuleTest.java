@@ -12,7 +12,7 @@ public class UncaughtExceptionRuleTest {
     @Test
     public void testAssertOnUnhandledException() throws InterruptedException {
         Thread t = new Thread(() -> {
-            int ignored = 10 / 0;
+            throw new ArithmeticException();
         });
         t.start();
         t.join();
@@ -27,7 +27,7 @@ public class UncaughtExceptionRuleTest {
     // @Test
     public void testFailureForUnhandledException() throws InterruptedException {
         Thread t = new Thread(() -> {
-            int ignored = 10 / 0;
+            throw new ArithmeticException();
         });
         t.start();
         t.join();
