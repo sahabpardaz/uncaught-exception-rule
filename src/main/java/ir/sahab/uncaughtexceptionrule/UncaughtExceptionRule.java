@@ -1,4 +1,4 @@
-package uncaughtexceptionrule;
+package ir.sahab.uncaughtexceptionrule;
 
 import org.junit.rules.TestRule;
 import org.junit.runner.Description;
