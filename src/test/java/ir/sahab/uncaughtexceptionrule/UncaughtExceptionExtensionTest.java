@@ -3,7 +3,7 @@ package ir.sahab.uncaughtexceptionrule;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(UncaughtExceptionExtension.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -31,9 +31,24 @@ class UncaughtExceptionExtensionTest {
 
     @Test
     @Order(3)
-    public void thisTestShouldPasse() {
-        assertTrue(true);
+    @Disabled
+    public void thisThrowsExceptionInMainThread() {
+        throw new ArithmeticException();
     }
 
+    @Test
+    @Order(4)
+    @Disabled
+    public void thisTestFails() {
+        fail("Just failed");
+    }
+
+    @Test
+    @Order(5)
+    public void thisTestExpectsAnException() {
+        assertThrows(ArithmeticException.class, () -> {
+            throw new ArithmeticException();
+        });
+    }
 
 }
