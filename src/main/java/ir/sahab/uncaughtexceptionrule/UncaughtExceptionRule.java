@@ -6,14 +6,12 @@ import org.junit.runners.model.Statement;
 
 /**
  * A rule which catches unhandled exceptions during unit test.
- *
  * By default during a unit test, unhandled exceptions that occur in working threads (i.e. all
  * threads except the main one) are missed and do not cause test failure. Even standard JUnit
  * assertion methods can not fail a test in a working thread. But usually you do not expect any
  * unhandled exception in any working thread, and you want the test to fail if it occurs. On the
  * other hand there are other situations in which you do expect a specific exception in some working
  * thread. Using this class, you can implement both.
- *
  * You should just define this line of code in your test class:
  * <pre>
  * {@literal @}Rule
@@ -57,7 +55,7 @@ public class UncaughtExceptionRule implements TestRule {
                 });
 
                 try {
-                    // Run one test or all of tests of a test class depending on whether it is a
+                    // Run one test or all tests of a test class depending on whether it is a
                     // @Rule or @ClassRule
                     base.evaluate();
                 } finally {
