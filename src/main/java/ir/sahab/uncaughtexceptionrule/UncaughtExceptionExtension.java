@@ -5,13 +5,21 @@ import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
 /**
- * An extension for catching exceptions in threads other than the JUnit main test thread.
- * You can't use this extension if you're running Concurrent tests.
+ * A JUnit 5 extension for catching exceptions in threads other than the JUnit main test thread.
+ * Note: you can't use this extension if you're running Concurrent tests.
  */
 public class UncaughtExceptionExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
 
     private Throwable unhandledException = null;
     private Thread.UncaughtExceptionHandler oldHandler;
+
+    public Throwable getException() {
+        return unhandledException;
+    }
+
+    public void clearException() {
+        unhandledException = null;
+    }
 
     @Override
     public void beforeTestExecution(ExtensionContext extensionContext) {

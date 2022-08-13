@@ -66,8 +66,6 @@ public void testAssertOnUnhandledException() throws InterruptedException {
 ## JUnit 5
  You can use it for JUnit 5 test like this:
 ```java
-...
-
 @Test
 @ExtendWith(UncaughtExceptionExtension.class)
 public void testFailureForUnhandledException() throws InterruptedException {
@@ -77,11 +75,33 @@ public void testFailureForUnhandledException() throws InterruptedException {
     t.start();
     t.join();
 }
-
-...
 ```
 `@ExtendWith(UncaughtExceptionExtension.class)` also can be used on a test class, so it will catch exceptions on all test methods.
+
+Also, you can check for exceptions in testcase like this:
+
+```java
+    @RegisterExtension
+    UncaughtExceptionExtension uncaughtExceptionExtension = new UncaughtExceptionExtension();
+
+    @Test
+    void testAssertForUnhandledExceptions() throws InterruptedException {
+        Thread t = new Thread(() -> {
+            int ignored = 10 / 0;
+        });
+        t.start();
+        t.join();
+
+        assertNotNull(uncaughtExceptionExtension.getException());
+        assertTrue(uncaughtExceptionExtension.getException() instanceof ArithmeticException);
+        // clear the exception for test passes.
+        uncaughtExceptionExtension.clearException();
+    }
+```
 
 ## Add it to your project
 You can reference to this library by either of java build systems (Maven, Gradle, SBT or Leiningen) using snippets from this jitpack link:
 [![](https://jitpack.io/v/sahabpardaz/uncaught-exception-rule.svg)](https://jitpack.io/#sahabpardaz/uncaught-exception-rule)
+
+JUnit 4 and 5 dependencies are marked as optional, so you need to provide JUnit 4 or 5 dependency
+(based on what version you need, and you use) in you project to make it work.

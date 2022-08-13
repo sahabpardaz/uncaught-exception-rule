@@ -5,7 +5,7 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 /**
- * A rule which catches unhandled exceptions during unit test.
+ * A Junit 4 {@link TestRule} which catches unhandled exceptions during unit test.
  * By default during a unit test, unhandled exceptions that occur in working threads (i.e. all
  * threads except the main one) are missed and do not cause test failure. Even standard JUnit
  * assertion methods can not fail a test in a working thread. But usually you do not expect any

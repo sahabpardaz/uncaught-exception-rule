@@ -1,54 +1,42 @@
 package ir.sahab.uncaughtexceptionrule;
 
-import org.junit.jupiter.api.*;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@ExtendWith(UncaughtExceptionExtension.class)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class UncaughtExceptionExtensionTest {
 
-    @Test
-    @Order(1)
-    public void testAAShouldPasse() {
-        assertTrue(true);
-    }
+    @RegisterExtension
+    UncaughtExceptionExtension uncaughtExceptionExtension = new UncaughtExceptionExtension();
 
-    // It is a test to test failure of test. So it is disabled.
-    // If you are in doubt, you can enable it!
     @Test
-    @Order(2)
-    @Disabled
-    public void testFailureForUnhandledException() throws InterruptedException {
+    void testAssertForUnhandledExceptions() throws InterruptedException {
         Thread t = new Thread(() -> {
             throw new ArithmeticException();
         });
         t.start();
         t.join();
+
+        assertNotNull(uncaughtExceptionExtension.getException());
+        assertTrue(uncaughtExceptionExtension.getException() instanceof ArithmeticException);
+        // clear the exception for test passes.
+        uncaughtExceptionExtension.clearException();
     }
 
+    /*
+     * This test will fail to show that our extension can catch exceptions from other threads.
+     */
     @Test
-    @Order(3)
     @Disabled
-    public void thisThrowsExceptionInMainThread() {
-        throw new ArithmeticException();
-    }
-
-    @Test
-    @Order(4)
-    @Disabled
-    public void thisTestFails() {
-        fail("Just failed");
-    }
-
-    @Test
-    @Order(5)
-    public void thisTestExpectsAnException() {
-        assertThrows(ArithmeticException.class, () -> {
+    void testFailureForUnhandledException() throws InterruptedException {
+        Thread t = new Thread(() -> {
             throw new ArithmeticException();
         });
+        t.start();
+        t.join();
     }
 
 }
