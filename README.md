@@ -41,7 +41,7 @@ public void test() throws InterruptedException {
 }
 ```
 This time, it works and you will see a failed report by JUnit. But how about the threads which are not created directly in unit test and it is created because of an asynch. call in your test?
-This JUnit rule provides a simple solution. It is enough to define the rule in test class:
+This JUnit 4 rule provides a simple solution. It is enough to define the rule in test class:
 ```java
 @Rule
 public UncaughtExceptionRule rule = new UncaughtExceptionRule();
@@ -60,11 +60,13 @@ public void testAssertOnUnhandledException() throws InterruptedException {
 
     Assert.assertNotNull(rule.getException());
     Assert.assertTrue(rule.getException() instanceof ArithmeticException);
+    rule.clearException();
 }
 ```
  
-## JUnit 5
- You can use it for JUnit 5 test like this:
+## JUnit 5 Support
+In case of using Junit 5, You can use UncaughtExceptionExtension extension like this:
+
 ```java
 @Test
 @ExtendWith(UncaughtExceptionExtension.class)

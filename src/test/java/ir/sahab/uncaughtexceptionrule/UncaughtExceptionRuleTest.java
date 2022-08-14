@@ -20,6 +20,7 @@ public class UncaughtExceptionRuleTest {
 
         Assert.assertNotNull(rule.getException());
         Assert.assertTrue(rule.getException() instanceof ArithmeticException);
+        // Clear the exception for passing the running unit test
         rule.clearException();
     }
 

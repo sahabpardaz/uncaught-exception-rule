@@ -22,7 +22,7 @@ class UncaughtExceptionExtensionTest {
 
         assertNotNull(uncaughtExceptionExtension.getException());
         assertTrue(uncaughtExceptionExtension.getException() instanceof ArithmeticException);
-        // clear the exception for test passes.
+        // Clear the exception for passing the running unit test
         uncaughtExceptionExtension.clearException();
     }
 
