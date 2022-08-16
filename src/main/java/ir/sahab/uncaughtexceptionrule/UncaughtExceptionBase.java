@@ -1,5 +1,8 @@
 package ir.sahab.uncaughtexceptionrule;
 
+/**
+ * Base class for handling uncaught exceptions raised from other thread in JUnit tests
+ */
 abstract class UncaughtExceptionBase {
     private Throwable unhandledException = null;
 
