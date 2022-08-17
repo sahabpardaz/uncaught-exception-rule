@@ -10,8 +10,8 @@
 
         <!--        Sonar settings        -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.organization>mojtab23</sonar.organization>
-        <sonar.projectKey>mojtab23_uncaught-exception-rule</sonar.projectKey>
+        <sonar.organization>sahabpardaz</sonar.organization>
+        <sonar.projectKey>sahabpardaz_uncaught-exception-rule</sonar.projectKey>
     </properties>
 
     <groupId>ir.sahab</groupId>
