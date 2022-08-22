@@ -1,5 +1,6 @@
 # Uncaught Exception Rule
-It is a junit rule which causes test failure when an uncaught exception is occured on secandary threads (threads other than main thread of the test).
+This library provides Junit 4 Rule and Junit 5 Extension which causes test failure when an uncaught exception 
+is occurred on secondary threads (threads other than main thread of the test).
 
 
 ## Motivation
