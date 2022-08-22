@@ -1,5 +1,7 @@
 package ir.sahab.uncaughtexceptionrule;
 
+import org.apache.log4j.BasicConfigurator;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -11,6 +13,11 @@ class UncaughtExceptionExtensionTest {
 
     @RegisterExtension
     UncaughtExceptionExtension uncaughtExceptionExtension = new UncaughtExceptionExtension();
+
+    @BeforeAll
+    static void setup() {
+        BasicConfigurator.configure();
+    }
 
     @Test
     void testAssertForUnhandledExceptions() throws InterruptedException {
@@ -44,11 +51,11 @@ class UncaughtExceptionExtensionTest {
     @Disabled
     void testFail() throws RuntimeException, InterruptedException {
         Thread t = new Thread(() -> {
-            throw new ArithmeticException();
+            throw new IllegalStateException("Exception occurred in another thread");
         });
         t.start();
         t.join();
-        throw new IllegalStateException("Bad");
+        throw new IllegalStateException("Exception occurred in unit test's thread");
     }
 
 }

@@ -1,14 +1,17 @@
 package ir.sahab.uncaughtexceptionrule;
 
-import org.junit.Assert;
-import org.junit.Ignore;
-import org.junit.Rule;
-import org.junit.Test;
+import org.apache.log4j.BasicConfigurator;
+import org.junit.*;
 
 public class UncaughtExceptionRuleTest {
 
     @Rule
     public UncaughtExceptionRule rule = new UncaughtExceptionRule();
+
+    @BeforeClass
+    public static void setup() {
+        BasicConfigurator.configure();
+    }
 
     @Test
     public void testAssertOnUnhandledException() throws InterruptedException {
@@ -41,11 +44,11 @@ public class UncaughtExceptionRuleTest {
     @Test
     public void testFail() throws RuntimeException, InterruptedException {
         Thread t = new Thread(() -> {
-            throw new ArithmeticException();
+            throw new IllegalStateException("Exception occurred in another thread");
         });
         t.start();
         t.join();
-        throw new IllegalStateException("Bad");
+        throw new IllegalStateException("Exception occurred in unit test's thread");
     }
 
 }

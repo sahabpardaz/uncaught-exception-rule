@@ -1,18 +1,24 @@
 package ir.sahab.uncaughtexceptionrule;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Base class for handling uncaught exceptions raised from other threads in JUnit tests.
  */
 abstract class UncaughtExceptionBase {
+
+    private final Logger log = LoggerFactory.getLogger(UncaughtExceptionBase.class);
+
     private final AtomicReference<Throwable> unhandledException = new AtomicReference<>();
     private Thread.UncaughtExceptionHandler oldHandler;
 
     protected void setUnhandledException(Throwable t) {
         final Throwable previous = unhandledException.getAndSet(t);
         if (previous != null) {
-            previous.printStackTrace();
+            log.error("Exception caught", previous);
         }
     }
 

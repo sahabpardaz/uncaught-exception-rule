@@ -8,6 +8,8 @@ import java.lang.reflect.Method;
 
 /**
  * A JUnit 5 extension for catching exceptions in threads other than the JUnit main test thread.
+ * Overrides the {@link InvocationInterceptor#interceptTestMethod} to catches the exceptions that occurs in concurrent
+ * threads during test.
  * Note: you can't use this extension if you're running Concurrent tests.
  */
 public class UncaughtExceptionExtension extends UncaughtExceptionBase implements InvocationInterceptor {
@@ -16,8 +18,7 @@ public class UncaughtExceptionExtension extends UncaughtExceptionBase implements
     public void interceptTestMethod(
             Invocation<Void> invocation,
             ReflectiveInvocationContext<Method> invocationContext,
-            ExtensionContext extensionContext
-    ) throws Throwable {
+            ExtensionContext extensionContext) throws Throwable {
         registerHandler();
         try {
             invocation.proceed();
