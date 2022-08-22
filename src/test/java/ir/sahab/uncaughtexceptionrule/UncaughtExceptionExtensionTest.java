@@ -39,4 +39,16 @@ class UncaughtExceptionExtensionTest {
         t.join();
     }
 
+    // In case of exception in test thread and another thread we should show all exceptions
+    @Test
+    @Disabled
+    void testFail() throws RuntimeException, InterruptedException {
+        Thread t = new Thread(() -> {
+            throw new ArithmeticException();
+        });
+        t.start();
+        t.join();
+        throw new IllegalStateException("Bad");
+    }
+
 }
