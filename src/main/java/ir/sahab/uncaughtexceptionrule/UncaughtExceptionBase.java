@@ -43,7 +43,7 @@ abstract class UncaughtExceptionBase {
         Thread.setDefaultUncaughtExceptionHandler(oldHandler);
         if (!unhandledExceptions.isEmpty()) {
             if (unhandledExceptions.size() > 1) {
-                throw new AggregateException("Got multiple concurrent exceptions", getExceptions());
+                throw new UncaughtException("Got multiple concurrent exceptions", getExceptions());
             } else {
                 throw unhandledExceptions.get(0);
             }
