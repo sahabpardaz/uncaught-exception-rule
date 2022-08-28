@@ -47,9 +47,11 @@ This JUnit 4 rule provides a simple solution. It is enough to define the rule in
 @Rule
 public UncaughtExceptionRule rule = new UncaughtExceptionRule();
 ```
-By defining this rule, any uncaugh exception in any thread will cause test failure. For example, the first two examples here, both fail if you define this rule. 
+By defining this rule, any uncaught exception in any thread will cause test failure. For example, the first two examples here, both fail if you define this rule. 
 
-But we have another use case for this rule too and that's when you expect to see an specific uncaught exception. When you expect it and you want to check it, again you can use this rule:
+But we have another use case for this rule too and that's when you expect to see a specific uncaught exception.
+Because there is a possibility to occur multiple exceptions in multiple concurrent threads you can find that in the
+list of uncaught exceptions, you can use this rule like this:
 ```java
 @Test
 public void testAssertOnUnhandledException() throws InterruptedException {
