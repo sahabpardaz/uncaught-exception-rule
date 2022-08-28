@@ -23,7 +23,7 @@ public class UncaughtExceptionExtension extends UncaughtExceptionBase implements
         try {
             invocation.proceed();
         } catch (Throwable t) {
-            setUnhandledException(t);
+            gotUnhandledException(t);
         } finally {
             afterHandle();
         }

@@ -1,23 +1,16 @@
 package ir.sahab.uncaughtexceptionrule;
 
-import org.apache.log4j.BasicConfigurator;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class UncaughtExceptionExtensionTest {
 
     @RegisterExtension
     UncaughtExceptionExtension uncaughtExceptionExtension = new UncaughtExceptionExtension();
-
-    @BeforeAll
-    static void setup() {
-        BasicConfigurator.configure();
-    }
 
     @Test
     void testAssertForUnhandledExceptions() throws InterruptedException {
@@ -27,8 +20,8 @@ class UncaughtExceptionExtensionTest {
         t.start();
         t.join();
 
-        assertNotNull(uncaughtExceptionExtension.getException());
-        assertTrue(uncaughtExceptionExtension.getException() instanceof ArithmeticException);
+        assertFalse(uncaughtExceptionExtension.getExceptions().isEmpty());
+        assertTrue(uncaughtExceptionExtension.getExceptions().get(0) instanceof ArithmeticException);
         // Clear the exception for passing the running unit test
         uncaughtExceptionExtension.clearException();
     }

@@ -59,8 +59,8 @@ public void testAssertOnUnhandledException() throws InterruptedException {
     t.start();
     t.join();
 
-    Assert.assertNotNull(rule.getException());
-    Assert.assertTrue(rule.getException() instanceof ArithmeticException);
+    Assert.assertFalse(rule.getExceptions().isEmpty());
+    Assert.assertTrue(rule.getExceptions().get(0) instanceof ArithmeticException);
     rule.clearException();
 }
 ```
@@ -95,8 +95,8 @@ Also, you can check for exceptions in testcase like this:
         t.start();
         t.join();
 
-        assertNotNull(uncaughtExceptionExtension.getException());
-        assertTrue(uncaughtExceptionExtension.getException() instanceof ArithmeticException);
+        assertFalse(uncaughtExceptionExtension.getExceptions().isEmpty());
+        assertTrue(uncaughtExceptionExtension.getExceptions().get(0) instanceof ArithmeticException);
         // clear the exception for test passes.
         uncaughtExceptionExtension.clearException();
     }

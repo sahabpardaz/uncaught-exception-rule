@@ -44,7 +44,7 @@ public class UncaughtExceptionRule extends UncaughtExceptionBase implements Test
                     // @Rule or @ClassRule
                     base.evaluate();
                 } catch (Throwable t) {
-                    setUnhandledException(t);
+                    gotUnhandledException(t);
                 } finally {
                     afterHandle();
                 }
