@@ -24,7 +24,7 @@ class UncaughtException extends Exception {
     @Override
     public String getMessage() {
         final String messages = exceptions.stream()
-                .map(Throwable::getMessage)
+                .map(ex -> ex.getClass().getSimpleName() + ": " + ex.getMessage())
                 .collect(Collectors.joining(",\n\t", "List of Exception messages:\n\t", ""));
         return String.format("%s%n\t%s", super.getMessage(), messages);
     }
