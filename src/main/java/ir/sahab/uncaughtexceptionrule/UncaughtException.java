@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Exception that contains several exceptions that are occurred concurrently
+ * Wrapper around all exceptions that are occurred during unit test execution.
+ *
+ * @see UncaughtExceptionBase#afterHandle()
  */
 class UncaughtException extends Exception {
     static final long serialVersionUID = -7188848759039620762L;
