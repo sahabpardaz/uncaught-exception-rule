@@ -1,7 +1,18 @@
 # Uncaught Exception Rule
-This library provides Junit 4 Rule and Junit 5 Extension which causes test failure when an uncaught exception 
-is occurred on secondary threads (threads other than main thread of the test).
 
+[![Tests](https://github.com/sahabpardaz/uncaught-exception-rule/actions/workflows/maven-verify.yml/badge.svg?branch=master)](https://github.com/sahabpardaz/uncaught-exception-rule/actions/workflows/maven-verify.yml)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=coverage)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=duplicated_lines_density)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=security_rating)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=sqale_index)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sahabpardaz_uncaught-exception-rule&metric=alert_status)](https://sonarcloud.io/dashboard?id=sahabpardaz_uncaught-exception-rule)
+[![JitPack](https://jitpack.io/v/sahabpardaz/uncaught-exception-rule.svg)](https://jitpack.io/#sahabpardaz/uncaught-exception-rule)
+
+This library provides Junit 4 Rule and Junit 5 Extension which causes test failure when an uncaught exception
+is occurred on secondary threads (threads other than main thread of the test).
 
 ## Motivation
 Using JUnit, you can have a passed test, even when it throws an uncaught exception in a secondary thread (any thread other than the main thread of the test). For example, the following test, will pass:
